@@ -13,3 +13,30 @@ Update:
 Added 2 new devices
 1 PC to the 1st switch (PC-PT) (IP address: 168.90.0.6)
 1 PC to the 2nd switch (PC-PT) (IP address: 210.3.14.5)
+
+Commands used:
+-CONFIGURING the router interfaces:
+enable
+configure terminal
+interface GigabitEthernet0/0
+ip address 168.90.0.1 255.255.0.0
+no shutdown
+exit
+interface GigabitEthernet0/1
+ip address 210.3.14.1 255.255.255.0
+no shutdown
+exit
+
+ENABLING DHCP FOR EACH NETWORK:
+1st:
+ip dhcp pool NET1
+network 168.90.0.0 255.255.0.0
+default-router 168.90.0.1
+2nd:
+ip dhcp pool NET2
+network 210.3.14.0 255.255.255.0
+default-router 210.3.14.1
+
+After this i manually clicked on each PC, Server etc to set the IP configuration to DHCP
+I verified the configuration using the "ipconfig" command on each node
+And then i pinged other devices from each device
